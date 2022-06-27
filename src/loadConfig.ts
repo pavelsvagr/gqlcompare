@@ -64,9 +64,15 @@ const remapConfig = (config: Record<string, any>) => {
     },
     notifications: {
       slack: {
-        url: replaceWithEnv(config.settings.url, 'GQL_COMPARE_SLACK_URL'),
+        url: replaceWithEnv(
+          config.notifications?.slack?.url,
+          'GQL_COMPARE_SLACK_URL'
+        ),
         mentions: readArray(
-          replaceWithEnv(config.settings.mentions, 'GQL_COMPARE_SLACK_MENTIONS')
+          replaceWithEnv(
+            config.notifications?.slack?.mentions,
+            'GQL_COMPARE_SLACK_MENTIONS'
+          )
         ),
       },
     },
