@@ -1,0 +1,50 @@
+{
+  "name": "gqlcompare",
+  "description": "CI GraphQL schema comparator with slack notifications",
+  "version": "0.0.0",
+  "author": "Pavel Švagr <s.pavel66@gmail.com>",
+  "contributors": [
+    "Pavel Švagr <s.pavel66@gmail.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AckeeCZ/kesha"
+  },
+  "main": "./dist/index.js",
+  "bin": {
+    "gqlcompare": "./dist/index.js"
+  },
+  "files": [
+    "dist/*"
+  ],
+  "engines": {
+    "node": ">=16.1.0"
+  },
+  "license": "MIT",
+  "keywords": [
+    "GraphQL",
+    "notifications",
+    "diff",
+    "compare"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "jest --colors --forceExit --runInBand"
+  },
+  "dependencies": {
+    "@graphql-inspector/core": "^3.1.2",
+    "@graphql-inspector/graphql-loader": "^3.1.2",
+    "@graphql-inspector/loaders": "^3.1.2",
+    "@graphql-inspector/url-loader": "^3.1.2",
+    "got": "^11.8.5"
+  },
+  "devDependencies": {
+    "@ackee/styleguide-backend-config": "^0.2.2",
+    "@types/jest": "^27.4.1",
+    "husky": "^4.2.3",
+    "jest": "^27.2.0",
+    "lint-staged": "^11.1.2",
+    "ts-jest": "^27.0.5",
+    "typescript": "^4.7.4"
+  }
+}
