@@ -106,7 +106,10 @@ const getErrorsFromChanges = (
   changes: SchemaChanges
 ) => {
   const errors: string[] = []
-  if (config.settings.failLevel === FailLevel.Breaking) {
+  if (
+    config.settings.failLevel !== FailLevel.Never &&
+    changes.breaking.length
+  ) {
     errors.push(
       getChangeMessage(
         changes.breaking.length,
@@ -116,8 +119,9 @@ const getErrorsFromChanges = (
     )
   }
   if (
-    config.settings.failLevel === FailLevel.Dangerous ||
-    config.settings.failLevel === FailLevel.Any
+    (config.settings.failLevel === FailLevel.Dangerous ||
+      config.settings.failLevel === FailLevel.Any) &&
+    changes.dangerous.length
   ) {
     errors.push(
       getChangeMessage(
@@ -127,7 +131,7 @@ const getErrorsFromChanges = (
       )
     )
   }
-  if (config.settings.failLevel === FailLevel.Any) {
+  if (config.settings.failLevel === FailLevel.Any && changes.safe.length) {
     errors.push(
       getChangeMessage(
         changes.safe.length,
