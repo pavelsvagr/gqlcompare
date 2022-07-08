@@ -114,6 +114,7 @@ function createAttachments(changes: {
 
 export async function notifySlack({
   url,
+  name,
   changes,
   environment,
   mentionIds,
@@ -125,6 +126,7 @@ export async function notifySlack({
     safe: Change[]
   }
   url: string
+  name: string
   environment?: string
   mentionIds?: string[]
   detailUrl?: {
@@ -134,14 +136,16 @@ export async function notifySlack({
 }) {
   const totalChanges =
     changes.breaking.length + changes.dangerous.length + changes.safe.length
-  const schemaName = environment ? `${environment} schema` : 'schema'
+  const schemaName = environment
+    ? `*${name}*[${environment}] schema`
+    : `*${name}* schema`
 
   const mentions = (mentionIds ?? []).map(m =>
-    m.startsWith('group:') ? `<!subteam^${m.substr(6)}>` : `<@${m}>`
+    m.startsWith('group:') ? `<!subteam^${m.substring(6)}>` : `<@${m}>`
   )
 
   const header = [
-    `:graphql: Detected *${totalChanges} ${pluralize(
+    `🕵 Detected *${totalChanges} ${pluralize(
       'change',
       totalChanges
     )}* in ${schemaName}`,
