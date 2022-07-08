@@ -1,7 +1,7 @@
 {
   "name": "gqlcompare",
   "description": "CI friendly GraphQL schema comparator with slack notifications based on graphql-inspector",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": "Pavel Švagr <s.pavel66@gmail.com>",
   "contributors": [
     "Pavel Švagr <s.pavel66@gmail.com>"
